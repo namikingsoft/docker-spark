@@ -1,0 +1,14 @@
+master:
+  image: namikingsoft/spark
+  hostname: master
+  container_name: master
+  environment:
+    - constraint:node==/node0/
+  command: master
+
+worker:
+  image: namikingsoft/spark
+  environment:
+    - MASTER_HOSTNAME=master
+    - affinity:container!=/worker/
+  command: worker
